@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ⚙️ CONFIGURATION (THE CONST YOU WERE LOOKING FOR)
     // ==========================================
     // Change this to your Render URL after deploying (e.g., "https://shiv-shakti-api.onrender.com/api/products")
-    const API_BASE_URL = "http://localhost:5000/api/products"; 
+    const API_BASE_URL = "https://shivshakti-backend-5fg4.onrender.com/api/products"; 
 
     // ==========================================
     // 📱 MOBILE MENU LOGIC
