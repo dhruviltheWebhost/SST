@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Shiv Shakti Trader</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Simple Admin Styles */
+        body { font-family: 'Segoe UI', sans-serif; background: #f4f4f4; padding: 20px; }
+        .container { max-width: 900px; margin: 0 auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        h2 { border-bottom: 2px solid #8b5a2b; padding-bottom: 10px; color: #8b5a2b; }
+        
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; font-weight: bold; margin-bottom: 5px; }
+        input, select, textarea { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; }
+        
+        .btn-add { background: #8b5a2b; color: white; padding: 12px 25px; border: none; cursor: pointer; font-weight: bold; width: 100%; border-radius: 4px; }
+        .btn-add:hover { background: #5d3a1a; }
+
+        /* Product List Table */
+        table { width: 100%; border-collapse: collapse; margin-top: 30px; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
+        th { background: #eee; }
+        .img-preview { width: 50px; height: 50px; object-fit: cover; border-radius: 4px; }
+        .btn-delete { background: #ff4444; color: white; border: none; padding: 5px 10px; cursor: pointer; border-radius: 4px; }
+        
+        /* Status Msg */
+        #status { margin-top: 10px; font-weight: bold; text-align: center; }
+        .success { color: green; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Add New Product</h2>
+        <form id="add-form">
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>Product Name</label>
+                    <input type="text" id="p-name" required>
+                </div>
+                <div class="form-group">
+                    <label>Category</label>
+                    <select id="p-category">
+                        <option value="channels">Telescopic Channels</option>
+                        <option value="kitchen">Kitchen Accessories</option>
+                        <option value="handles">Luxury Handles</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Price (Optional)</label>
+                    <input type="text" id="p-price" placeholder="e.g. ₹500">
+                </div>
+                <div class="form-group">
+                    <label>Image URL</label>
+                    <input type="url" id="p-image" placeholder="https://..." required>
+                    <small style="color:#666">Right click any image on web -> Copy Image Address</small>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Description</label>
+                <textarea id="p-desc" rows="3" required></textarea>
+            </div>
+            
+            <button type="submit" class="btn-add">Upload Product</button>
+            <div id="status"></div>
+        </form>
+
+        <h2 style="margin-top: 50px;">Manage Products</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="product-table">
+                <!-- Data loaded via JS -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // REPLACE THIS WITH YOUR RENDER BACKEND URL LATER
+        const API_URL = "http://localhost:5000/api/products"; 
+        // Example: const API_URL = "https://shiv-shakti-api.onrender.com/api/products";
+
+        const form = document.getElementById('add-form');
+        const statusDiv = document.getElementById('status');
+        const tableBody = document.getElementById('product-table');
+
+        // 1. Fetch and Display Products
+        async function loadProducts() {
+            try {
+                const res = await fetch(API_URL);
+                const products = await res.json();
+                
+                tableBody.innerHTML = '';
+                products.forEach(p => {
+                    const row = `
+                        <tr>
+                            <td><img src="${p.image_url}" class="img-preview"></td>
+                            <td>${p.name}</td>
+                            <td>${p.category}</td>
+                            <td><button class="btn-delete" onclick="deleteProduct(${p.id})">Delete</button></td>
+                        </tr>
+                    `;
+                    tableBody.innerHTML += row;
+                });
+            } catch (err) {
+                console.error("Error loading products:", err);
+            }
+        }
+
+        // 2. Add Product
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            statusDiv.textContent = "Uploading...";
+            
+            const product = {
+                name: document.getElementById('p-name').value,
+                category: document.getElementById('p-category').value,
+                price: document.getElementById('p-price').value,
+                image_url: document.getElementById('p-image').value,
+                description: document.getElementById('p-desc').value
+            };
+
+            try {
+                const res = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(product)
+                });
+
+                if (res.ok) {
+                    statusDiv.innerHTML = '<span class="success">Product Added Successfully!</span>';
+                    form.reset();
+                    loadProducts(); // Refresh list
+                } else {
+                    throw new Error('Failed to add');
+                }
+            } catch (err) {
+                statusDiv.innerHTML = '<span class="error">Error adding product. Check console.</span>';
+                console.error(err);
+            }
+        });
+
+        // 3. Delete Product
+        window.deleteProduct = async (id) => {
+            if(!confirm("Are you sure?")) return;
+            
+            try {
+                await fetch(`${API_URL}/${id}`, { method: 'DELETE' });
+                loadProducts();
+            } catch (err) {
+                alert("Error deleting product");
+            }
+        };
+
+        // Load on start
+        loadProducts();
+    </script>
+</body>
+</html>
