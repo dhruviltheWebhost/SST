@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products | Shiv Shakti Trader</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-top">
+            <div class="logo-area">
+                <a href="index.html" style="text-decoration:none; display:flex; align-items:center; gap:15px;">
+                    <img src="logo.jpg" alt="SST Logo" class="logo-img">
+                    <span class="brand-name">SHIV SHAKTI TRADER</span>
+                </a>
+            </div>
+            <a href="index.html" class="btn-outline">Back to Home</a>
+        </div>
+    </header>
+
+    <!-- Category Header -->
+    <section class="page-header">
+        <h1 id="category-title">Loading...</h1>
+        <div class="divider-gold"></div>
+    </section>
+
+    <!-- Product List -->
+    <section class="section">
+        <div class="container">
+            <div class="grid" id="product-grid">
+                <!-- Products will be injected here by script.js -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Detail Modal (Hidden by default) -->
+    <div id="product-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-body">
+                <div class="modal-img">
+                    <img id="modal-img" src="" alt="Product">
+                </div>
+                <div class="modal-info">
+                    <h2 id="modal-title">Product Name</h2>
+                    <p id="modal-desc" class="modal-desc">Description</p>
+                    <p class="modal-price">Available in Wholesale</p>
+                    <a href="#contact" class="btn-primary" onclick="closeModal()">Enquire Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Section (Same as Home) -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <h3>Contact Us</h3>
+                    <p>Interested in our products? Call us today.</p>
+                    <div class="info-item">
+                        <i class="fas fa-phone-alt" style="color:var(--gold)"></i>
+                        <span style="color:white; margin-left:10px;">+91 98765 43210</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-envelope" style="color:var(--gold)"></i>
+                        <span style="color:white; margin-left:10px;">shivshaktitrader@gmail.com</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2025 Shiv Shakti Trader.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

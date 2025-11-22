@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shiv Shakti Trader | Home</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-top">
+            <div class="logo-area">
+                <img src="logo.jpg" alt="SST Logo" class="logo-img">
+                <span class="brand-name">SHIV SHAKTI TRADER</span>
+            </div>
+            <!-- Simple Nav -->
+            <nav class="desktop-nav">
+                <a href="index.html" class="active">Home</a>
+                <a href="#categories">Categories</a>
+                <a href="#contact">Contact</a>
+            </nav>
+            <div class="mobile-toggle"><i class="fas fa-bars"></i></div>
+        </div>
+        <!-- Mobile Nav Menu -->
+        <div class="mobile-nav-links">
+            <a href="index.html">Home</a>
+            <a href="#categories">Categories</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <span class="subtitle">Premium Furniture Hardware</span>
+            <h2 class="hero-title">Refining Spaces with <span class="text-wood">Elegance</span></h2>
+            <p>Discover our exclusive range of heavy-duty channels, modular kitchen accessories, and luxury handles.</p>
+            <a href="#categories" class="btn-primary">View Categories</a>
+        </div>
+        <div class="hero-image">
+            <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=800&q=80" alt="Kitchen Hardware">
+        </div>
+    </section>
+
+    <!-- MAIN CATEGORIES SECTION -->
+    <section id="categories" class="section bg-light">
+        <div class="container">
+            <div class="section-header">
+                <h3>Browse by Category</h3>
+                <div class="divider-gold"></div>
+                <p>Select a category to view our complete range.</p>
+            </div>
+            
+            <div class="category-grid">
+                
+                <!-- Category 1: Channels -->
+                <!-- Note the link: category.html?type=channels -->
+                <a href="category.html?type=channels" class="category-card">
+                    <div class="cat-img-box">
+                        <img src="https://placehold.co/600x400/f5f5f5/8b5a2b?text=Channels" alt="Channels">
+                    </div>
+                    <div class="cat-content">
+                        <h4>Telescopic Channels</h4>
+                        <p>Soft close, heavy duty & push-to-open slides.</p>
+                        <span class="btn-text">View Products <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </a>
+
+                <!-- Category 2: Kitchen -->
+                <a href="category.html?type=kitchen" class="category-card">
+                    <div class="cat-img-box">
+                        <img src="https://placehold.co/600x400/f5f5f5/8b5a2b?text=Kitchen+Accessories" alt="Kitchen">
+                    </div>
+                    <div class="cat-content">
+                        <h4>Kitchen Accessories</h4>
+                        <p>Baskets, corners units & cutlery organizers.</p>
+                        <span class="btn-text">View Products <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </a>
+
+                <!-- Category 3: Handles -->
+                <a href="category.html?type=handles" class="category-card">
+                    <div class="cat-img-box">
+                        <img src="https://placehold.co/600x400/f5f5f5/8b5a2b?text=Handles" alt="Handles">
+                    </div>
+                    <div class="cat-content">
+                        <h4>Luxury Handles</h4>
+                        <p>Profile handles, knobs & concealed fittings.</p>
+                        <span class="btn-text">View Products <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <h3>Get In Touch</h3>
+                    <p>Contact us for bulk orders and dealership enquiries.</p>
+                    <div class="info-item">
+                        <div class="icon-box"><i class="fas fa-phone-alt"></i></div>
+                        <div><h5>Mobile</h5><p>+91 98765 43210</p></div>
+                    </div>
+                    <div class="info-item">
+                        <div class="icon-box"><i class="fas fa-envelope"></i></div>
+                        <div><h5>Email</h5><p>shivshaktitrader@gmail.com</p></div>
+                    </div>
+                    <div class="info-item">
+                        <div class="icon-box"><i class="fas fa-map-marker-alt"></i></div>
+                        <div><h5>Address</h5><p>Ahmedabad, Gujarat, India</p></div>
+                    </div>
+                </div>
+
+                <div class="contact-form-card">
+                    <h3>Send Enquiry</h3>
+                    <form>
+                        <div class="form-group"><label>Name</label><input type="text" required></div>
+                        <div class="form-group"><label>Mobile</label><input type="tel" required></div>
+                        <div class="form-group"><label>Message</label><textarea rows="3" required></textarea></div>
+                        <button type="submit" class="btn-submit">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2025 Shiv Shakti Trader. All Rights Reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
